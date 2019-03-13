@@ -18,13 +18,15 @@ module.exports = merge(common, {
         test: /\.css$/,
         loaders: [cssextract.loader, 'css-loader'],
       },
+      {
+        test: /\.scss$/,
+        loaders: [cssextract.loader, 'css-loader', 'sass-loader'],
+      },
     ],
   },
   optimization: {
     splitChunks: {
       chunks: 'all',
-      maxSize: 240000,
-      minSize: 1,
       name: true,
       cacheGroups: {
         vendors: {

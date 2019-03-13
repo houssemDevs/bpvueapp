@@ -8,8 +8,7 @@ const common = require('./webpack.common');
 module.exports = merge(common, {
   mode: 'development',
   output: {
-    publicPath: '/assets/',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, './build'),
     filename: '[hash].js',
   },
   module: {
@@ -18,12 +17,14 @@ module.exports = merge(common, {
         test: /\.css$/,
         loaders: ['vue-style-loader', 'css-loader'],
       },
+      {
+        test: /\.scss$/,
+        loaders: ['vue-style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
   devServer: {
-    publicPath: '/assets/',
     port: 4000,
-    writeToDisk: true,
   },
   plugins: [new clean()],
 });

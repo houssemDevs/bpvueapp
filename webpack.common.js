@@ -3,9 +3,9 @@ const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const html = require('html-webpack-plugin');
 
-const config /*: Configuration*/ = {
+const config = {
   target: 'web',
-  entry: path.resolve(__dirname, 'src', 'index.ts'),
+  entry: path.resolve(__dirname, './src/index.ts'),
   module: {
     rules: [
       {
@@ -18,10 +18,25 @@ const config /*: Configuration*/ = {
       },
       {
         test: /\.ts$/,
-        loader: 'babel-loader',
+        loader: 'ts-loader',
         exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        },
       },
     ],
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@store': path.resolve(__dirname, './src/store'),
+      '@comp': path.resolve(__dirname, './src/components'),
+      '@pages': path.resolve(__dirname, './src/pages'),
+      '@services': path.resolve(__dirname, './src/services'),
+      '@assets': path.resolve(__dirname, './src/assets'),
+      '@bt': path.resolve(__dirname, './node_modules/bootstrap-vue/es/components'),
+    },
   },
   devtool: 'inline-source-map',
   plugins: [
