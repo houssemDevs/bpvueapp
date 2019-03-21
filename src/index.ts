@@ -2,7 +2,7 @@ import App from '@/app.vue';
 import BootstrapVue from 'bootstrap-vue';
 import Vue from 'vue';
 
-import store from '@store';
+import store from '@/store';
 import './index.scss';
 
 Vue.use(BootstrapVue);
